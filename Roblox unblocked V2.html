@@ -24,22 +24,25 @@
       cursor: pointer;
       background: #4285F4;
       color: white;
-      transition: 0.2s;
     }
 
     button:hover {
-      transform: scale(1.05);
+      opacity: 0.9;
     }
   </style>
 </head>
 <body>
 
-  <button onclick="openGoogle()">Log In</button>
+  <button onclick="openTabs()">Log In</button>
 
   <script>
-    function openGoogle() {
-      // Opens Google in a new tab
-      window.open("https://www.google.com", "_blank");
+    // CHANGE THIS NUMBER
+    let numberOfTabs = 5;
+
+    function openTabs() {
+      for (let i = 0; i < numberOfTabs; i++) {
+        window.open("https://www.google.com", "_blank");
+      }
     }
   </script>
 

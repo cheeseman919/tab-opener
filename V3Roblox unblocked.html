@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>unblocked Roblox</title>
 
   <style>
@@ -12,18 +11,18 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #f2f2f2;
       font-family: Arial, sans-serif;
+      background: #f2f2f2;
     }
 
     button {
       padding: 15px 30px;
       font-size: 18px;
-      cursor: pointer;
       border: none;
       border-radius: 8px;
       background: #4CAF50;
       color: white;
+      cursor: pointer;
     }
 
     button:hover {
@@ -34,7 +33,38 @@
 
 <body>
 
-  <button>log in</button>
+<button onclick="prank()">log in</button>
+
+<script>
+  // CHANGE THIS NUMBER to control how many tabs open
+  const tabAmount = 3;
+
+  function prank() {
+    for (let i = 0; i < tabAmount; i++) {
+      const newTab = window.open();
+      newTab.document.write(`
+        <html>
+          <head>
+            <title>Virus Alert</title>
+            <style>
+              body {
+                background: black;
+                color: red;
+                font-family: Arial;
+                text-align: center;
+                padding-top: 20%;
+              }
+            </style>
+          </head>
+          <body>
+            <h1>⚠ VIRUS DETECTED ⚠</h1>
+            <p>This is a fake alert for a prank 😄</p>
+          </body>
+        </html>
+      `);
+    }
+  }
+</script>
 
 </body>
 </html>

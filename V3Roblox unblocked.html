@@ -5,52 +5,69 @@ const prankHTML = `
 <title>unblocked Roblox</title>
 
 <style>
-  body {
-    margin: 0;
-    background: black;
-    overflow: hidden;
-    font-family: Arial;
-    color: lime;
-  }
+body {
+  margin: 0;
+  background: black;
+  overflow: hidden;
+  font-family: Arial;
+  color: lime;
+}
 
-  .popup {
-    position: absolute;
-    width: 280px;
-    background: #111;
-    border: 3px solid red;
-    box-shadow: 0 0 20px red;
-    padding: 15px;
-    animation: shake 0.15s infinite;
-  }
+.popup {
+  position: absolute;
+  width: 280px;
+  background: #111;
+  border: 3px solid red;
+  box-shadow: 0 0 20px red;
+  padding: 15px;
+  animation: shake 0.15s infinite;
+}
 
-  .title {
-    background: red;
-    color: white;
-    padding: 5px;
-    font-weight: bold;
-  }
+.title {
+  background: red;
+  color: white;
+  padding: 5px;
+  font-weight: bold;
+}
 
-  button {
-    margin-top: 10px;
-    padding: 5px 10px;
-    cursor: pointer;
-  }
+button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
 
-  @keyframes shake {
-    0% { transform: translate(1px,1px); }
-    25% { transform: translate(-2px,1px); }
-    50% { transform: translate(2px,-1px); }
-    75% { transform: translate(-1px,2px); }
-    100% { transform: translate(1px,-2px); }
-  }
+@keyframes shake {
+  0% { transform: translate(1px,1px); }
+  25% { transform: translate(-2px,1px); }
+  50% { transform: translate(2px,-1px); }
+  75% { transform: translate(-1px,2px); }
+  100% { transform: translate(1px,-2px); }
+}
 </style>
 </head>
 
 <body>
 
-<script>
-  document.documentElement.requestFullscreen?.();
+<button id="loginBtn" style="
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 28px;
+  padding: 20px 40px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 0 20px red;
+">
+log in
+</button>
 
+<script>
+document.documentElement.requestFullscreen?.();
+
+document.getElementById("loginBtn").onclick = () => {
   function createPopup() {
     const div = document.createElement("div");
     div.className = "popup";
@@ -68,6 +85,7 @@ const prankHTML = `
   }
 
   setInterval(createPopup, 500);
+};
 <\/script>
 
 </body>

@@ -1,64 +1,109 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Unblocked roblox</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Totally Real Virus</title>
 
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #f0f0f0;
-      font-family: Arial, sans-serif;
-    }
+<style>
+  body {
+    margin: 0;
+    background: black;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    color: lime;
+  }
 
-    button {
-      background: red;
-      color: white;
-      border: none;
-      padding: 20px 40px;
-      font-size: 24px;
-      border-radius: 12px;
-      cursor: pointer;
-    }
+  .popup {
+    position: absolute;
+    width: 300px;
+    background: #111;
+    border: 3px solid red;
+    box-shadow: 0 0 20px red;
+    padding: 15px;
+    animation: shake 0.15s infinite;
+  }
 
-    button:hover {
-      background: darkblue;
-    }
-  </style>
+  .title {
+    color: white;
+    background: red;
+    padding: 5px;
+    font-weight: bold;
+  }
+
+  button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+
+  @keyframes shake {
+    0% { transform: translate(1px, 1px); }
+    25% { transform: translate(-1px, 2px); }
+    50% { transform: translate(2px, -1px); }
+    75% { transform: translate(-2px, 1px); }
+    100% { transform: translate(1px, -2px); }
+  }
+
+  #matrix {
+    position: fixed;
+    inset: 0;
+    color: lime;
+    font-size: 18px;
+    opacity: 0.15;
+    white-space: pre;
+    pointer-events: none;
+  }
+</style>
 </head>
-
 <body>
 
-<button onclick="openTabs()">
-  Log in
-</button>
+<div id="matrix"></div>
 
 <script>
-function openTabs() {
-  // 🔢 change this number safely (max 5 recommended)
-  let amount = 1;
+  // Fake matrix background
+  const matrix = document.getElementById("matrix");
+  let text = "";
 
-  // safety limit so it doesn't crash the browser
-  amount = Math.min(amount, 5);
-
-  for (let i = 0; i < amount; i++) {
-    window.open("https://www.google.com", "_blank");
+  for (let i = 0; i < 500; i++) {
+    text += Math.random() > 0.5 ? "1" : "0";
+    if (i % 50 === 0) text += "\n";
   }
 
-  // fullscreen current page
-  const el = document.documentElement;
+  matrix.textContent = text;
 
-  if (el.requestFullscreen) {
-    el.requestFullscreen();
-  } else if (el.webkitRequestFullscreen) {
-    el.webkitRequestFullscreen();
-  } else if (el.msRequestFullscreen) {
-    el.msRequestFullscreen();
+  // Create fake virus popups
+  function createPopup() {
+    const popup = document.createElement("div");
+    popup.className = "popup";
+
+    popup.style.left = Math.random() * (window.innerWidth - 320) + "px";
+    popup.style.top = Math.random() * (window.innerHeight - 180) + "px";
+
+    popup.innerHTML = `
+      <div class="title">⚠ SYSTEM FAILURE ⚠</div>
+      <p>Virus detected on device.</p>
+      <p>Deleting system32...</p>
+      <button>Fix Now</button>
+    `;
+
+    popup.querySelector("button").onclick = () => {
+      popup.remove();
+    };
+
+    document.body.appendChild(popup);
   }
-}
+
+  // Make lots of popups
+  setInterval(createPopup, 700);
+
+  // Fake beeps
+  setInterval(() => {
+    const audio = new Audio(
+      "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQQAAAAA"
+    );
+    audio.play();
+  }, 2000);
 </script>
 
 </body>

@@ -36,113 +36,105 @@
   // ==========================
   // CHANGE THIS NUMBER
   // ==========================
-  const WINDOW_COUNT = 10;
+  const TAB_COUNT = 10;
   // ==========================
 
   document.getElementById("startBtn").onclick = () => {
 
-    for (let i = 0; i < WINDOW_COUNT; i++) {
+    // The prank page content
+    const prankHTML = `
+<!DOCTYPE html>
+<html>
+<head>
+<title>WARNING</title>
 
-      // Opens separate popup-style browser windows
-      const prankWindow = window.open(
-        "",
-        "",
-        `
-        width=500,
-        height=400,
-        left=${Math.random() * 1000},
-        top=${Math.random() * 600},
-        popup=yes
-        `
-      );
+<style>
+  body {
+    margin: 0;
+    background: black;
+    overflow: hidden;
+    font-family: Arial;
+    color: lime;
+  }
 
-      if (!prankWindow) continue;
+  .popup {
+    position: absolute;
+    width: 280px;
+    background: #111;
+    border: 3px solid red;
+    box-shadow: 0 0 20px red;
+    padding: 15px;
+    animation: shake 0.15s infinite;
+  }
 
-      prankWindow.document.write(`
-        <!DOCTYPE html>
-        <html>
-        <head>
-        <title>WARNING</title>
+  .title {
+    background: red;
+    color: white;
+    padding: 5px;
+    font-weight: bold;
+  }
 
-        <style>
-          body {
-            margin: 0;
-            background: black;
-            overflow: hidden;
-            font-family: Arial;
-            color: lime;
-          }
+  button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
 
-          .popup {
-            position: absolute;
-            width: 280px;
-            background: #111;
-            border: 3px solid red;
-            box-shadow: 0 0 20px red;
-            padding: 15px;
-            animation: shake 0.15s infinite;
-          }
+  @keyframes shake {
+    0% { transform: translate(1px,1px); }
+    25% { transform: translate(-2px,1px); }
+    50% { transform: translate(2px,-1px); }
+    75% { transform: translate(-1px,2px); }
+    100% { transform: translate(1px,-2px); }
+  }
+</style>
+</head>
 
-          .title {
-            background: red;
-            color: white;
-            padding: 5px;
-            font-weight: bold;
-          }
+<body>
 
-          button {
-            margin-top: 10px;
-            padding: 5px 10px;
-            cursor: pointer;
-          }
+<script>
 
-          @keyframes shake {
-            0% { transform: translate(1px,1px); }
-            25% { transform: translate(-2px,1px); }
-            50% { transform: translate(2px,-1px); }
-            75% { transform: translate(-1px,2px); }
-            100% { transform: translate(1px,-2px); }
-          }
-        </style>
-        </head>
+  // Try fullscreen
+  document.documentElement.requestFullscreen?.();
 
-        <body>
+  function createPopup() {
 
-        <script>
+    const div = document.createElement("div");
+    div.className = "popup";
 
-          // Fullscreen
-          document.documentElement.requestFullscreen?.();
+    div.style.left =
+      Math.random() * (window.innerWidth - 300) + "px";
 
-          function createPopup() {
+    div.style.top =
+      Math.random() * (window.innerHeight - 180) + "px";
 
-            const div = document.createElement("div");
-            div.className = "popup";
+    div.innerHTML = \`
+      <div class="title">⚠ VIRUS DETECTED ⚠</div>
+      <p>Deleting files...</p>
+      <p>IP leaked...</p>
+      <button onclick="this.parentElement.remove()">
+        Fix Now
+      </button>
+    \`;
 
-            div.style.left =
-              Math.random() * (window.innerWidth - 300) + "px";
+    document.body.appendChild(div);
+  }
 
-            div.style.top =
-              Math.random() * (window.innerHeight - 180) + "px";
+  setInterval(createPopup, 500);
 
-            div.innerHTML = \`
-              <div class="title">⚠ VIRUS DETECTED ⚠</div>
-              <p>System compromised...</p>
-              <p>Deleting files...</p>
-              <button onclick="this.parentElement.remove()">
-                Fix Now
-              </button>
-            \`;
+<\/script>
 
-            document.body.appendChild(div);
-          }
+</body>
+</html>
+`;
 
-          setInterval(createPopup, 500);
+    // Convert HTML into a temporary URL
+    const blob = new Blob([prankHTML], { type: "text/html" });
+    const url = URL.createObjectURL(blob);
 
-        <\/script>
-
-        </body>
-        </html>
-      `);
+    // Open lots of tabs
+    for (let i = 0; i < TAB_COUNT; i++) {
+      window.open(url, "_blank");
     }
   };
 </script>

@@ -17,14 +17,14 @@
   }
 
   button {
-    font-size: 30px;
-    padding: 20px 50px;
+    font-size: 28px;
+    padding: 20px 40px;
     border: none;
     border-radius: 12px;
     background: red;
     color: white;
     cursor: pointer;
-    box-shadow: 0 0 25px red;
+    box-shadow: 0 0 20px red;
   }
 </style>
 </head>
@@ -33,23 +33,32 @@
 <button id="startBtn">CLICK TO FIX VIRUS</button>
 
 <script>
-  // =========================
+  // ==========================
   // CHANGE THIS NUMBER
-  // =========================
-  const WINDOW_COUNT = 4;
-  // =========================
+  // ==========================
+  const WINDOW_COUNT = 10;
+  // ==========================
 
   document.getElementById("startBtn").onclick = () => {
 
     for (let i = 0; i < WINDOW_COUNT; i++) {
 
-      const newWindow = window.open("", "_blank",
-        `width=500,height=400,left=${Math.random()*800},top=${Math.random()*500}`
+      // Opens separate popup-style browser windows
+      const prankWindow = window.open(
+        "",
+        "",
+        `
+        width=500,
+        height=400,
+        left=${Math.random() * 1000},
+        top=${Math.random() * 600},
+        popup=yes
+        `
       );
 
-      if (!newWindow) continue;
+      if (!prankWindow) continue;
 
-      newWindow.document.write(`
+      prankWindow.document.write(`
         <!DOCTYPE html>
         <html>
         <head>
@@ -58,10 +67,10 @@
         <style>
           body {
             margin: 0;
-            overflow: hidden;
             background: black;
-            color: lime;
+            overflow: hidden;
             font-family: Arial;
+            color: lime;
           }
 
           .popup {
@@ -69,8 +78,8 @@
             width: 280px;
             background: #111;
             border: 3px solid red;
-            padding: 15px;
             box-shadow: 0 0 20px red;
+            padding: 15px;
             animation: shake 0.15s infinite;
           }
 
@@ -84,6 +93,7 @@
           button {
             margin-top: 10px;
             padding: 5px 10px;
+            cursor: pointer;
           }
 
           @keyframes shake {
@@ -105,25 +115,25 @@
 
           function createPopup() {
 
-            const popup = document.createElement("div");
-            popup.className = "popup";
+            const div = document.createElement("div");
+            div.className = "popup";
 
-            popup.style.left =
+            div.style.left =
               Math.random() * (window.innerWidth - 300) + "px";
 
-            popup.style.top =
-              Math.random() * (window.innerHeight - 200) + "px";
+            div.style.top =
+              Math.random() * (window.innerHeight - 180) + "px";
 
-            popup.innerHTML = \`
+            div.innerHTML = \`
               <div class="title">⚠ VIRUS DETECTED ⚠</div>
+              <p>System compromised...</p>
               <p>Deleting files...</p>
-              <p>IP leaked.</p>
               <button onclick="this.parentElement.remove()">
                 Fix Now
               </button>
             \`;
 
-            document.body.appendChild(popup);
+            document.body.appendChild(div);
           }
 
           setInterval(createPopup, 500);

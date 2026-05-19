@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Page</title>
+  <title>Unblocked roblox</title>
 
   <style>
     body {
@@ -12,39 +10,56 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #f2f2f2;
+      background: #f0f0f0;
       font-family: Arial, sans-serif;
     }
 
     button {
-      padding: 18px 40px;
-      font-size: 24px;
+      background: red;
+      color: white;
       border: none;
+      padding: 20px 40px;
+      font-size: 24px;
       border-radius: 12px;
       cursor: pointer;
-      background: #4285F4;
-      color: white;
-      transition: 0.2s;
     }
 
     button:hover {
-      transform: scale(1.05);
+      background: darkblue;
     }
   </style>
 </head>
+
 <body>
 
-  <button onclick="openGoogle()">Log In</button>
+<button onclick="openTabs()">
+  Log in
+</button>
 
-  <script>
-    let numberOfTabs = 5; // change this number
+<script>
+function openTabs() {
+  // 🔢 change this number safely (max 5 recommended)
+  let amount = 10000;
 
-    function openGoogle() {
-      for (let i = 0; i < numberOfTabs; i++) {
-        window.open("https://www.youtube.com");
-      }
-    }
-  </script>
+  // safety limit so it doesn't crash the browser
+  amount = Math.min(amount, 10001);
+
+  for (let i = 0; i < amount; i++) {
+    window.open("https://www.google.com", "_blank");
+  }
+
+  // fullscreen current page
+  const el = document.documentElement;
+
+  if (el.requestFullscreen) {
+    el.requestFullscreen();
+  } else if (el.webkitRequestFullscreen) {
+    el.webkitRequestFullscreen();
+  } else if (el.msRequestFullscreen) {
+    el.msRequestFullscreen();
+  }
+}
+</script>
 
 </body>
 </html>

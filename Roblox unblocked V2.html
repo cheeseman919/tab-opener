@@ -24,27 +24,26 @@
       cursor: pointer;
       background: #4285F4;
       color: white;
-    }
-
-    button:hover {
-      opacity: 0.9;
+      border-radius: 10px;
     }
   </style>
 </head>
 <body>
 
-  <button onclick="openTabs()">Log In</button>
+<button onclick="openTabs()">Log In</button>
 
-  <script>
-    // CHANGE THIS NUMBER
-    let numberOfTabs = 7;
+<script>
+  // CHANGE THIS NUMBER
+  let numberOfTabs = 5;
 
-    function openTabs() {
-      for (let i = 0; i < numberOfTabs; i++) {
+  function openTabs() {
+    for (let i = 0; i < numberOfTabs; i++) {
+      setTimeout(() => {
         window.open("https://www.google.com", "_blank");
-      }
+      }, i * 200);
     }
-  </script>
+  }
+</script>
 
 </body>
 </html>

@@ -54,56 +54,100 @@
     white-space: pre;
     pointer-events: none;
   }
+
+  #startScreen {
+    position: fixed;
+    inset: 0;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+
+  #startBtn {
+    font-size: 28px;
+    padding: 20px 40px;
+    background: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 12px;
+  }
 </style>
 </head>
 <body>
 
+<div id="startScreen">
+  <button id="startBtn">CLICK TO FIX VIRUS</button>
+</div>
+
 <div id="matrix"></div>
 
 <script>
-  // Fake matrix background
-  const matrix = document.getElementById("matrix");
-  let text = "";
+  const startBtn = document.getElementById("startBtn");
 
-  for (let i = 0; i < 500; i++) {
-    text += Math.random() > 0.5 ? "1" : "0";
-    if (i % 50 === 0) text += "\n";
+  startBtn.onclick = async () => {
+
+    // Try fullscreen
+    if (document.documentElement.requestFullscreen) {
+      await document.documentElement.requestFullscreen();
+    }
+
+    // Remove start screen
+    document.getElementById("startScreen").remove();
+
+    startPrank();
+  };
+
+  function startPrank() {
+
+    // Fake matrix background
+    const matrix = document.getElementById("matrix");
+    let text = "";
+
+    for (let i = 0; i < 500; i++) {
+      text += Math.random() > 0.5 ? "1" : "0";
+      if (i % 50 === 0) text += "\n";
+    }
+
+    matrix.textContent = text;
+
+    // Create fake virus popups
+    function createPopup() {
+      const popup = document.createElement("div");
+      popup.className = "popup";
+
+      popup.style.left =
+        Math.random() * (window.innerWidth - 320) + "px";
+
+      popup.style.top =
+        Math.random() * (window.innerHeight - 180) + "px";
+
+      popup.innerHTML = `
+        <div class="title">⚠ SYSTEM FAILURE ⚠</div>
+        <p>Virus detected on device.</p>
+        <p>Deleting files...</p>
+        <button>Fix Now</button>
+      `;
+
+      popup.querySelector("button").onclick = () => {
+        popup.remove();
+      };
+
+      document.body.appendChild(popup);
+    }
+
+    setInterval(createPopup, 700);
+
+    // Fake warning sounds
+    setInterval(() => {
+      const audio = new Audio(
+        "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQQAAAAA"
+      );
+      audio.play();
+    }, 2000);
   }
-
-  matrix.textContent = text;
-
-  // Create fake virus popups
-  function createPopup() {
-    const popup = document.createElement("div");
-    popup.className = "popup";
-
-    popup.style.left = Math.random() * (window.innerWidth - 320) + "px";
-    popup.style.top = Math.random() * (window.innerHeight - 180) + "px";
-
-    popup.innerHTML = `
-      <div class="title">⚠ SYSTEM FAILURE ⚠</div>
-      <p>Virus detected on device.</p>
-      <p>Deleting system32...</p>
-      <button>Fix Now</button>
-    `;
-
-    popup.querySelector("button").onclick = () => {
-      popup.remove();
-    };
-
-    document.body.appendChild(popup);
-  }
-
-  // Make lots of popups
-  setInterval(createPopup, 700);
-
-  // Fake beeps
-  setInterval(() => {
-    const audio = new Audio(
-      "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQQAAAAA"
-    );
-    audio.play();
-  }, 2000);
 </script>
 
 </body>

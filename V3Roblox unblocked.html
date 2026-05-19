@@ -1,69 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>unblocked Roblox</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>unblocked Roblox</title>
 
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: Arial, sans-serif;
-      background: #f2f2f2;
-    }
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: black;
+    font-family: Arial, sans-serif;
+  }
 
-    button {
-      padding: 15px 30px;
-      font-size: 18px;
-      border: none;
-      border-radius: 8px;
-      background: #4CAF50;
-      color: white;
-      cursor: pointer;
-    }
+  button {
+    font-size: 28px;
+    padding: 20px 40px;
+    border: none;
+    border-radius: 12px;
+    background: red;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 20px red;
+  }
+</style>
+</head>
+<body>
 
-    button:hover {
-      background: #45a049;
-    }
-  </style>
+<button id="startBtn">log in</button>
+
+<script>
+  // ==========================
+  // CHANGE THIS NUMBER
+  // ==========================
+  const TAB_COUNT = 10;
+  // ==========================
+
+  document.getElementById("startBtn").onclick = () => {
+
+    const prankHTML = `
+<!DOCTYPE html>
+<html>
+<head>
+<title>unblocked Roblox</title>
+
+<style>
+  body {
+    margin: 0;
+    background: black;
+    overflow: hidden;
+    font-family: Arial;
+    color: lime;
+  }
+
+  .popup {
+    position: absolute;
+    width: 280px;
+    background: #111;
+    border: 3px solid red;
+    box-shadow: 0 0 20px red;
+    padding: 15px;
+    animation: shake 0.15s infinite;
+  }
+
+  .title {
+    background: red;
+    color: white;
+    padding: 5px;
+    font-weight: bold;
+  }
+
+  button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+
+  @keyframes shake {
+    0% { transform: translate(1px,1px); }
+    25% { transform: translate(-2px,1px); }
+    50% { transform: translate(2px,-1px); }
+    75% { transform: translate(-1px,2px); }
+    100% { transform: translate(1px,-2px); }
+  }
+</style>
 </head>
 
 <body>
 
-<button onclick="prank()">log in</button>
-
 <script>
-  // CHANGE THIS NUMBER to control how many tabs open
-  const tabAmount = 3;
+  document.documentElement.requestFullscreen?.();
 
-  function prank() {
-    for (let i = 0; i < tabAmount; i++) {
-      const newTab = window.open();
-      newTab.document.write(`
-        <html>
-          <head>
-            <title>Virus Alert</title>
-            <style>
-              body {
-                background: black;
-                color: red;
-                font-family: Arial;
-                text-align: center;
-                padding-top: 20%;
-              }
-            </style>
-          </head>
-          <body>
-            <h1>⚠ VIRUS DETECTED ⚠</h1>
-            <p>This is a fake alert for a prank 😄</p>
-          </body>
-        </html>
-      `);
-    }
+  function createPopup() {
+    const div = document.createElement("div");
+    div.className = "popup";
+
+    div.style.left = Math.random() * (window.innerWidth - 300) + "px";
+    div.style.top = Math.random() * (window.innerHeight - 180) + "px";
+
+    div.innerHTML = \`
+      <div class="title">⚠ VIRUS DETECTED ⚠</div>
+      <p>Deleting files...</p>
+      <p>IP leaked...</p>
+      <button onclick="this.parentElement.remove()">Fix Now</button>
+    \`;
+
+    document.body.appendChild(div);
   }
+
+  setInterval(createPopup, 500);
+<\/script>
+
+</body>
+</html>
+`;
+
+    const blob = new Blob([prankHTML], { type: "text/html" });
+    const url = URL.createObjectURL(blob);
+
+    for (let i = 0; i < TAB_COUNT; i++) {
+      window.open(url, "_blank");
+    }
+  };
 </script>
 
 </body>

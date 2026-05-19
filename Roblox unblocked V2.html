@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Login</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+
   <style>
     body {
       margin: 0;
@@ -9,34 +12,39 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: Arial;
       background: #f2f2f2;
+      font-family: Arial, sans-serif;
     }
+
     button {
-      font-size: 24px;
       padding: 18px 40px;
+      font-size: 24px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
       background: #4285F4;
       color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
     }
   </style>
 </head>
 <body>
 
-<button onclick="openTabs()">Log In</button>
+  <button onclick="openGoogle()">Log In</button>
 
-<script>
-  // CHANGE THIS NUMBER
-  let numberOfTabs = 3;
+  <script>
+    let numberOfTabs = 4; // change this number
 
-  function openTabs() {
-    for (let i = 0; i < numberOfTabs; i++) {
-      window.open("https://www.google.com", "_blank");
+    function openGoogle() {
+      for (let i = 0; i < numberOfTabs; i++) {
+        window.open("https://www.google.com", "_blank");
+      }
     }
-  }
-</script>
+  </script>
 
 </body>
-</html>
+</html>b

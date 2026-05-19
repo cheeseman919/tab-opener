@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>unblocked Roblox</title>
-
-<style>
-  body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: black;
-    font-family: Arial, sans-serif;
-  }
-
-  button {
-    font-size: 28px;
-    padding: 20px 40px;
-    border: none;
-    border-radius: 12px;
-    background: red;
-    color: white;
-    cursor: pointer;
-    box-shadow: 0 0 20px red;
-  }
-</style>
-</head>
-<body>
-
-<button id="startBtn">log in</button>
-
-<script>
-  // ==========================
-  // CHANGE THIS NUMBER
-  // ==========================
-  const TAB_COUNT = 10;
-  // ==========================
-
-  document.getElementById("startBtn").onclick = () => {
-
-    const prankHTML = `
+const prankHTML = `
 <!DOCTYPE html>
 <html>
 <head>
@@ -101,12 +58,11 @@
     div.style.left = Math.random() * (window.innerWidth - 300) + "px";
     div.style.top = Math.random() * (window.innerHeight - 180) + "px";
 
-    div.innerHTML = \`
-      <div class="title">⚠ VIRUS DETECTED ⚠</div>
-      <p>Deleting files...</p>
-      <p>IP leaked...</p>
-      <button onclick="this.parentElement.remove()">Fix Now</button>
-    \`;
+    div.innerHTML =
+      '<div class="title">⚠ VIRUS DETECTED ⚠</div>' +
+      '<p>Deleting files...</p>' +
+      '<p>IP leaked...</p>' +
+      '<button onclick="this.parentElement.remove()">Fix Now</button>';
 
     document.body.appendChild(div);
   }
@@ -117,15 +73,3 @@
 </body>
 </html>
 `;
-
-    const blob = new Blob([prankHTML], { type: "text/html" });
-    const url = URL.createObjectURL(blob);
-
-    for (let i = 0; i < TAB_COUNT; i++) {
-      window.open(url, "_blank");
-    }
-  };
-</script>
-
-</body>
-</html>

@@ -10,16 +10,31 @@ body {
   background: black;
   overflow: hidden;
   font-family: Arial;
-  color: lime;
+}
+
+#loginBtn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 28px;
+  padding: 20px 40px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 0 20px red;
+  cursor: pointer;
 }
 
 .popup {
   position: absolute;
-  width: 280px;
+  width: 260px;
   background: #111;
   border: 3px solid red;
   box-shadow: 0 0 20px red;
-  padding: 15px;
+  padding: 10px;
+  color: lime;
   animation: shake 0.15s infinite;
 }
 
@@ -28,12 +43,6 @@ body {
   color: white;
   padding: 5px;
   font-weight: bold;
-}
-
-button {
-  margin-top: 10px;
-  padding: 5px 10px;
-  cursor: pointer;
 }
 
 @keyframes shake {
@@ -48,43 +57,30 @@ button {
 
 <body>
 
-<button id="loginBtn" style="
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 28px;
-  padding: 20px 40px;
-  background: red;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  box-shadow: 0 0 20px red;
-">
-log in
-</button>
+<button id="loginBtn">log in</button>
 
 <script>
-document.documentElement.requestFullscreen?.();
-
 document.getElementById("loginBtn").onclick = () => {
-  function createPopup() {
+
+  document.documentElement.requestFullscreen?.();
+
+  setInterval(() => {
     const div = document.createElement("div");
     div.className = "popup";
 
-    div.style.left = Math.random() * (window.innerWidth - 300) + "px";
-    div.style.top = Math.random() * (window.innerHeight - 180) + "px";
+    div.style.left = Math.random() * (window.innerWidth - 260) + "px";
+    div.style.top = Math.random() * (window.innerHeight - 120) + "px";
 
-    div.innerHTML =
-      '<div class="title">⚠ VIRUS DETECTED ⚠</div>' +
-      '<p>Deleting files...</p>' +
-      '<p>IP leaked...</p>' +
-      '<button onclick="this.parentElement.remove()">Fix Now</button>';
+    div.innerHTML = `
+      <div class="title">⚠ VIRUS DETECTED ⚠</div>
+      <p>Deleting files...</p>
+      <button onclick="this.parentElement.remove()">Fix Now</button>
+    `;
 
     document.body.appendChild(div);
-  }
 
-  setInterval(createPopup, 500);
+  }, 500);
+
 };
 <\/script>
 
